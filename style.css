@@ -1,0 +1,51 @@
+.logo{
+    padding-left: 10px;
+    width: 100px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    width: auto;
+    background-color: rgb(96, 103, 102);
+    border-radius: 5px;
+    box-shadow: -1px 4px 20px 14px rgba(0, 0, 0, 0.2);
+    color: black;
+    font-weight: bold;
+}
+.nav-items{
+    padding: 0 10px 0;
+    width: auto;
+}
+
+.nav-items >ul {
+    display: flex;
+    list-style-type: none;
+    
+}
+.nav-items > ul > li{
+    padding: 40px 10px 0 0;
+    font-size: large;
+    cursor: pointer;
+}
+
+.rescard{
+    margin: 5px;
+    padding: 5px;
+    width: 190px;
+    background-color: gainsboro;
+}
+.rescard:hover{
+    border: solid black 1px;
+}
+
+.resimg{
+    width: 190px;
+}
+
+.res-container{
+    margin-left: 12px;
+    display: flex;
+    flex-wrap: wrap;
+}
