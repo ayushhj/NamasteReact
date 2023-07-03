@@ -6,6 +6,8 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurant, setlistOfRestaurant] = useState([])
+  const [filteredListOfRestaurant, setfilteredListOfRestaurant] = useState([])
+  const [searchText,setSearchText] = useState("")
 
   useEffect(()=>{
     fetchData();
@@ -16,6 +18,7 @@ const Body = () => {
     const json =  await data.json();
     console.log(json);
     setlistOfRestaurant(json?.data?.cards[2]?.data?.data?.cards)
+    setfilteredListOfRestaurant(json?.data?.cards[2]?.data?.data?.cards)
   }  
  
 if(listOfRestaurant.length ===0 ){
@@ -25,21 +28,38 @@ if(listOfRestaurant.length ===0 ){
 
     return(
       <div className="body">
-       <div className="search">Search</div>
+      
        <div>
+       <div className="search">
+       <input
+        type="text" 
+        className="search-box" 
+        value={searchText} 
+        onChange={(e)=>{
+          setSearchText(e.target.value);
+        }}  
+        />
+       <button onClick={()=>{
+        const filteredRestaurant =  listOfRestaurant.filter((res)=>
+          res.data.name.toLowerCase().includes(searchText.toLowerCase())
+        )
+        setfilteredListOfRestaurant(filteredRestaurant)
+
+       }}>Search</button>
+       </div> 
        <button
        className="filter-btn"
        onClick={()=>{
         const filteredList = listOfRestaurant.filter((res)=> res.data.avgRating > 4);
         setlistOfRestaurant(filteredList);
         console.log(filteredList)
-       }} 
+       }}  
        >
 
-       Filter top restaurant</button>
+       Top Rated Restaurant</button>
        </div>
        <div className="res-container">
-       {listOfRestaurant.map((restaurant) => {
+       {filteredListOfRestaurant.map((restaurant) => {
         return <RestaurantCard key={restaurant.data.id} resdata={restaurant} />;
       })}
        </div>
